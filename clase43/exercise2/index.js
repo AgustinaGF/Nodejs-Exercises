@@ -1,0 +1,1 @@
+const coolImages = require("cool- images")
