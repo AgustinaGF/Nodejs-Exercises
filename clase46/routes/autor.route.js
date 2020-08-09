@@ -8,12 +8,24 @@
      })
 
      server.post("/autores", (req, res) => {
-         let autor = req.body;
+             let autor = req.body;
+             try {
+                 let autorNuevo = autorService.createAutor(autor);
+                 res.status("201").json(autorNuevo)
+             } catch (err) {
+                 res.status("409").json({ error: err.message })
+             }
+         })
+         //  get de autores porid
+     server.get('/autores/:id', (req, res) => {
+         let idAutor = req.params.id
+         console.log(idAutor)
          try {
-             let autorNuevo = autorService.createAutor(autor);
-             res.status("201").json(autorNuevo)
-         } catch (err) {
-             res.status("409").json({ error: err.message })
+             let resultado = autorService.getAutorById(idAutor)
+             res.status(200).json(resultado)
+         } catch (error) {
+             console.log(error)
+             res.status(404).json({ error: error.message })
          }
      })
  }

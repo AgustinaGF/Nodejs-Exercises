@@ -12,3 +12,13 @@ module.exports.createAutor = function(autor) {
     }
     return dataStore.agregarAutor(autor);
 }
+
+module.exports.getAutorById = function(idAutor) {
+    // filtro para buscar por id
+    let buscarAutorporId = dataStore.autores.find(r => r.id == idAutor)
+    if (buscarAutorporId) {
+        return buscarAutorporId
+    } else {
+        throw new Error("No existe el autor que estas buscando")
+    }
+}
